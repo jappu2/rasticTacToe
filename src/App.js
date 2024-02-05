@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Homepage from './components/Homepage';
+import Header from './components/Header';
+import WeatherDetailsPage from './components/WeatherDetailsPage';
+import './App.css'
 
 function App() {
+  const [showNav, setShowNav] = React.useState(false)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <Header showNav={showNav}/>
+        <div>
+          <Routes>
+            <Route path="/" element={<Homepage setShowNav={setShowNav}/>} />
+            <Route path="/weather/:city" element={<WeatherDetailsPage />} />
+          </Routes>
+        </div>
+      </Router>
   );
 }
 
