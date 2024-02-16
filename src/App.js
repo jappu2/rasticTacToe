@@ -1,22 +1,33 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Homepage from './components/Homepage';
-import Header from './components/Header';
-import WeatherDetailsPage from './components/WeatherDetailsPage';
+import Board from './Board.js'
 import './App.css'
 
 function App() {
-  const [showNav, setShowNav] = React.useState(false)
+  const [currentTurn, setCurrentTurn] = React.useState('x');
+  const [currentSet, setCurrentSet] = React.useState([
+    {'index': 1, 'value': ''},
+    {'index': 2, 'value': ''},
+    {'index': 3, 'value': ''},
+    {'index': 4, 'value': ''},
+    {'index': 5, 'value': ''},
+    {'index': 6, 'value': ''},
+    {'index': 7, 'value': ''},
+    {'index': 8, 'value': ''},
+    {'index': 0, 'value': ''},
+]);
+  const [turns, setTurns] = React.useState(0);
+
+
+
   return (
-      <Router>
-        <Header showNav={showNav}/>
-        <div>
-          <Routes>
-            <Route path="/" element={<Homepage setShowNav={setShowNav}/>} />
-            <Route path="/weather/:city" element={<WeatherDetailsPage />} />
-          </Routes>
-        </div>
-      </Router>
+    <Board 
+      currentTurn={currentTurn} 
+      setCurrentTurn={setCurrentTurn} 
+      currentSet={currentSet} 
+      setCurrentSet={setCurrentSet} 
+      turns = {turns}
+      setTurns = {setTurns}
+    />
   );
 }
 
